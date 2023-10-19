@@ -17,9 +17,9 @@
   
   nreg = length(regions)#77 dist + absentee
   
-  ages = seq(-5,100,by=5)#for newborns "alive" at the beginning of the time interval 
+  ages = seq(-1,100,by=1)#for (-1) newborns "alive" at the beginning of the time interval 
   nage = length(ages) #
-  agecodes = ages/5
+  agecodes = ages
   
   sexnames = c("f","m") 
   nsex = length(sexnames)
@@ -27,12 +27,12 @@
   
   initime = 2021 #will change later 
   fintime = 2061
-  ts = 5 #timestep
+  ts = 1 #timestep
   nper = (fintime-initime)/ts
   pers = seq(initime,fintime,by=ts)
   
   
-  fertages = seq(15,45,by=5)#during the next five years
+  fertages = seq(15,45,by=1)#during the next five years
   nfertage = length(fertages) #Later for cohort - need 8
   nfertsex = 1
   
@@ -229,11 +229,11 @@ if(iscen!="baseline"){
   dttosave <-grep("dt$",ls(),value = T)#regex
   # original_input =  c("popdt","sxdt","propdt","emrdt", "imrdt","asfrdt","srbdt")
 
-  # for(ifile in dttosave) {
-  #   xx <- get(ifile)
-  #   xx[,value:=NA]
-  #   # write.csv(xx[,value:=NA],file = paste0(path_scen,ifile,".csv"))
-  #  write.csv(xx[,value:=NA],file = paste0("p:/IndiaSSP/gitindia/data/output/baselineruban_edu_mort_fert_mig/fill_",ifile,".csv"))
-  # }
+  for(ifile in dttosave) {
+    xx <- get(ifile)
+    xx[,value:=NA]
+    write.csv(xx[,value:=NA],file = paste0("../data/popproj nso 2021/",ifile,".csv"))
+   # write.csv(xx[,value:=NA],file = paste0("/output/baselineruban_edu_mort_fert_mig/fill_",ifile,".csv"))
+  }
   
 }# fertmys or baseline
